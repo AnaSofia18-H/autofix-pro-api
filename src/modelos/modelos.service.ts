@@ -25,11 +25,11 @@ export class ModelosService {
   }
  
   findAll() {
-    return this.modelosRepository.find({ relations: ['marca'] });
+    return this.modelosRepository.find({ relations: { marca: true } });
   }
  
   async findOne(id: number) {
-    const modelo = await this.modelosRepository.findOne({ where: { id }, relations: ['marca'] });
+    const modelo = await this.modelosRepository.findOne({ where: { id }, relations: { marca: true } });
     if (!modelo) {
       throw new NotFoundException(`No existe un modelo con id ${id}`);
     }
