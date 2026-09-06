@@ -1,3 +1,4 @@
+import { MecanicosModule } from './mecanicos/mecanicos.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -5,7 +6,7 @@ import { MarcasModule } from './marcas/marcas.module';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [
+  imports: [MecanicosModule,
     ConfigModule.forRoot({
       isGlobal: true, // Hace que las variables estén disponibles en todo el proyecto
     }),
