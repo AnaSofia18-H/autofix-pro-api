@@ -3,10 +3,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+<<<<<<< HEAD
+import { VehiculosModule } from './vehiculos/vehiculos.module';
+ 
+=======
 import { DatabaseModule } from './database/database.module';
 import { RepuestosModule } from './repuestos/repuestos.module';
 import { OrdenesServicioModule } from './ordenes-servicio/ordenes-servicio.module';
 
+>>>>>>> main
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -24,9 +29,13 @@ import { OrdenesServicioModule } from './ordenes-servicio/ordenes-servicio.modul
         synchronize: true,
       }),
     }),
+<<<<<<< HEAD
+    VehiculosModule,
+=======
     DatabaseModule,
     RepuestosModule,
     OrdenesServicioModule,
+>>>>>>> main
   ],
   controllers: [AppController],
   providers: [AppService],
