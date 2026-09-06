@@ -3,7 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
- 
+import { DatabaseModule } from './database/database.module';
+import { RepuestosModule } from './repuestos/repuestos.module';
+import { OrdenesServicioModule } from './ordenes-servicio/ordenes-servicio.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -12,15 +15,18 @@ import { AppService } from './app.service';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'mysql',
-        host: config.get('DB_HOST'),
-        port: parseInt(config.get('DB_PORT') ?? '3306', 10),
-        username: config.get('DB_USERNAME'),
-        password: config.get('DB_PASSWORD'),
-        database: config.get('DB_DATABASE'),
+        host: config.get<string>('DB_HOST'),
+        port: parseInt(config.get<string>('DB_PORT') || '3306', 10),
+        username: config.get<string>('DB_USERNAME'),
+        password: config.get<string>('DB_PASSWORD'),
+        database: config.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,
       }),
     }),
+    DatabaseModule,
+    RepuestosModule,
+    OrdenesServicioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
