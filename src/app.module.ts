@@ -1,43 +1,24 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MarcasModule } from './marcas/marcas.module';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-<<<<<<< HEAD
-import { VehiculosModule } from './vehiculos/vehiculos.module';
- 
-=======
-import { DatabaseModule } from './database/database.module';
-import { RepuestosModule } from './repuestos/repuestos.module';
-import { OrdenesServicioModule } from './ordenes-servicio/ordenes-servicio.module';
 
->>>>>>> main
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'mysql',
-        host: config.get<string>('DB_HOST'),
-        port: parseInt(config.get<string>('DB_PORT') || '3306', 10),
-        username: config.get<string>('DB_USERNAME'),
-        password: config.get<string>('DB_PASSWORD'),
-        database: config.get<string>('DB_DATABASE'),
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
+    ConfigModule.forRoot({
+      isGlobal: true, // Hace que las variables estén disponibles en todo el proyecto
     }),
-<<<<<<< HEAD
-    VehiculosModule,
-=======
-    DatabaseModule,
-    RepuestosModule,
-    OrdenesServicioModule,
->>>>>>> main
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT ?? '3306', 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }), MarcasModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
