@@ -2,11 +2,10 @@ import { Controller, Get, Post, Body, Param, Patch, Delete, ParseIntPipe } from 
 import { MarcasService } from './marcas.service';
 import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
- 
+
 @Controller('marcas')
 export class MarcasController {
   constructor(private readonly marcasService: MarcasService) {}
- 
   @Post()
   create(@Body() dto: CreateMarcaDto) {
     return this.marcasService.create(dto);
@@ -14,6 +13,7 @@ export class MarcasController {
  
   @Get()
   findAll() {
+    console.log('findAll called');
     return this.marcasService.findAll();
   }
  
