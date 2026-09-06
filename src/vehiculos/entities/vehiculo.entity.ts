@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Modelo } from '../../modelos/entities/modelo.entity';
  
@@ -18,4 +19,12 @@ export class Vehiculo {
   @ManyToOne(() => Modelo)
   @JoinColumn({ name: 'modelo_id' })
   modelo: Modelo;
+=======
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity('vehiculos')
+export class Vehiculo {
+    @PrimaryGeneratedColumn()
+    id: number;
+>>>>>>> main
 }
