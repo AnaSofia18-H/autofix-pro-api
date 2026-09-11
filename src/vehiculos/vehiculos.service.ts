@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Vehiculo } from './entities/vehiculo.entity';
-import { CreateVehiculoDto } from './dto/vehiculos/dto/create-vehiculo.dto';
-import { UpdateVehiculoDto } from './dto/vehiculos/dto/update-vehiculo.dto';
+import { CreateVehiculoDto } from './dto/create-vehiculo.dto';
+import { UpdateVehiculoDto } from './dto/update-vehiculo.dto';
 
 @Injectable()
 export class VehiculosService {

@@ -1,19 +1,17 @@
 import { Controller, Get, Post, Body, Param, Patch, Delete, ParseIntPipe } from '@nestjs/common';
 import { VehiculosService } from './vehiculos.service';
-import { CreateVehiculoDto } from './dto/vehiculos/dto/create-vehiculo.dto';
-import { UpdateVehiculoDto } from './dto/vehiculos/dto/update-vehiculo.dto';
+import { CreateVehiculoDto } from './dto/create-vehiculo.dto';
+import { UpdateVehiculoDto } from './dto/update-vehiculo.dto';
 
- 
 @Controller('vehiculos')
 export class VehiculosController {
-  constructor(private readonly vehiculosService: VehiculosService) {}
- 
+  constructor(private readonly vehiculosService: VehiculosService) {} 
   @Post()
   create(@Body() dto: CreateVehiculoDto) {
     return this.vehiculosService.create(dto);
   }
- 
- @Get()
+  
+  @Get()
 findAll() {
   return this.vehiculosService.findAll();
 }
@@ -22,12 +20,10 @@ findAll() {
 findOne(@Param('id') id: string) {
   return this.vehiculosService.findOne(+id);
 }
- 
   @Patch(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateVehiculoDto) {
     return this.vehiculosService.update(id, dto);
   }
- 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.vehiculosService.remove(id);
