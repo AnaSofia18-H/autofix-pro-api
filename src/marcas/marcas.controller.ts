@@ -3,7 +3,7 @@ import { MarcasService } from './marcas.service';
 import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
 
-@Controller('api/marcas') // <-- Asegúrate de que tenga el 'api/' si globalmente usan ese prefijo
+@Controller('marcas')
 export class MarcasController {
   constructor(private readonly marcasService: MarcasService) {}
 
